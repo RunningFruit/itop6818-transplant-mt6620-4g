@@ -5,6 +5,8 @@ ubuntu使用的动态分配ip地址的工具是dhclient
 mkdir /system/
 tar xvf system_dir.tgz -C /system/
 
+chmod a+x /system/bin/*
+
 cd /root
 chmod a+x /system/lib/modules/*
 wpa_passphrase XXX "YYY" > /etc/wpa_supplicant.conf
