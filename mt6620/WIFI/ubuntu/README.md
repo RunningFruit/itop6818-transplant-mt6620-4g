@@ -1,6 +1,6 @@
 
 
-ubuntu起初使用动态分配ip地址的工具是dhclient，而不是udhcpc
+ubuntu、qt起初使用动态分配ip地址的工具是dhclient，而不是udhcpc
 
 setwifi_6818.sh
 ```sh
