@@ -2,6 +2,9 @@
 
 ubuntu使用的动态分配ip地址的工具是dhclient
 ```
+mkdir /system/
+tar xvf system_dir.tgz -C /system/
+
 cd /root
 chmod a+x /system/lib/modules/*
 wpa_passphrase XXX "YYY" > /etc/wpa_supplicant.conf
@@ -35,7 +38,7 @@ chmod 0666 /dev/gps
 
 sleep 3
 oput=`echo 1 > /dev/wmtWifi`
-wpa_supplicant -iwlan0 -Dnl80211 -c/etc/wpa_supplicant.conf  &
+wpa_supplicant -iwlan0 -Dnl80211 -c /etc/wpa_supplicant.conf &
 pid=$!
 sleep 2
 
@@ -126,7 +129,7 @@ yellow 'done'
 echo
 echo ' use "wpa_passphrase ssid [passphrase] /etc/wpa_supplicant.conf" to preset wifi'
 echo
-yellow  'then reboot or run "sh /etc/init.d/itop-set" to set up wifi'
+yellow 'then reboot or run "sh /etc/init.d/itop-set" to set up wifi'
 ```
 
 pppd_conf.sh
@@ -137,7 +140,7 @@ cd `dirname $0` || exit 0
 pwd
 pppd call wcdma  | tee  /usr/ppp.log &
 sleep 4
-vgw=`tail /usr/ppp.log |   grep  'remote IP address' | grep -m 1 -o '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'`
+vgw=`tail /usr/ppp.log | grep  'remote IP address' | grep -m 1 -o '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'`
 vnamenserver=`tail /usr/ppp.log |  grep  primary | grep -m 1 -o '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'`
 echo $vgw
 echo $vnamenserver
