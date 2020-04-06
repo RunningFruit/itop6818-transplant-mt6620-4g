@@ -1,6 +1,11 @@
 
 
-ubuntu、qt起初使用动态分配ip地址的工具是dhclient，而不是udhcpc
+ubuntu使用的动态分配ip地址的工具是dhclient
+```
+cd /root
+wpa_passphrase XXX "YYY" > /etc/wpa_supplicant.conf
+sh setwifi_6818.sh
+```
 
 setwifi_6818.sh
 ```sh
