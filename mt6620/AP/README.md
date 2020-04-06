@@ -1,5 +1,42 @@
 
-移植
+
+4G、有线网络 开启热点
+
+执行
+```
+apt-get install -y dos2unix
+dos2unix placeAll.sh
+chmod a+x placeAll.sh
+sh placeAll.sh
+```
+
+wifi
+```
+wpa_passphrase XXX "YYY" > /etc/wpa_supplicant.conf
+/etc/init.d/mt6620 &
+ping "www.baidu.com" -c 4
+```
+
+4g网络热点
+```
+#修改 ssid 和 wpa_passphrase
+vim /etc/hostapd/hostapd.conf
+
+#插上4G卡后，执行
+/etc/init.d/mt6620_AP_4G &
+```
+
+有线网络热点
+```
+#修改 ssid 和 wpa_passphrase 即可修改热点的名称和密码
+vim /etc/hostapd/hostapd.conf
+
+#启动
+/etc/init.d/mt6620_AP_eth0 &
+```
+
+
+原移植过程
 1.移植openssl
 ```
 sudo su
@@ -76,9 +113,8 @@ ls /usr/local/hostapd_topeet/hostapd/hostapd
 ls /usr/local/iptables-1.4.19/install/sbin/xtables-multi
 ```
 
-
-打开开发板终端
-vi /etc/init.d/mt6620_AP_4G
+6.修改串口设备
+vi etc/init.d/mt6620_AP_4G
 ```
 #修改
 chmod 0660 /dev/ttymxc1
@@ -91,23 +127,4 @@ chmod 0660 /dev/ttyAMA2
 #6818 成以下内容：
 chmod 0660 /dev/ttySAC2
 /usr/bin/6620_launcher -m 1 -b 921600 -n /etc/firmware/mt6620_patch_hdr.bin -d /dev/ttySAC2 &
-```
-
-四.4g上网
-```
-#插上4G卡
-
-#执行
-/etc/init.d/mt6620_AP_4G
-```
-
-五.连接网线上网
-```
-#先连接网线
-
-#修改 ssid 和 wpa_passphrase 即可修改热点的名称和密码
-vim hostapd.conf
-
-#启动
-/etc/init.d/mt6620_AP_eth0
 ```
